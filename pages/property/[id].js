@@ -11,7 +11,7 @@ import ImageScrollBar from "../../components/ImageScrollBar";
 
 const PropertyDetails = ({ propertyDetails: { price, rentFrequency, rooms, title, baths, area, agency, isVerified, description, type, purpose, furnishingStatus, amenities, photos } }) => (
     <Box maxWidth="1000px" margin="auto" p="4">
-        {photos && <ImageScrollBar data={photos}/>}
+        {photos && <ImageScrollBar data={photos} />}
 
         <Box w="full" p="6">
             <Flex paddingTop="2" alignItems="center">
@@ -19,7 +19,7 @@ const PropertyDetails = ({ propertyDetails: { price, rentFrequency, rooms, title
                     {isVerified && <GoVerified />}
                 </Box>
                 <Text fontWeight="bold" fontSize="lg">
-                AED {price} {rentFrequency && `/${rentFrequency}`}
+                    AED {price} {rentFrequency && `/${rentFrequency}`}
                 </Text>
                 <Spacer />
                 <Avatar size="sm" src={agency?.logo?.url}></Avatar>
@@ -45,22 +45,22 @@ const PropertyDetails = ({ propertyDetails: { price, rentFrequency, rooms, title
             </Flex>
             {furnishingStatus && (
                 <Flex justifyContent="space-between" w="400px" borderBottom="1px" borderColor="gray.100" p="3" >
-                <Text>Furnishing Status</Text>
-                <Text fontWeight="bold">{furnishingStatus}</Text>
+                    <Text>Furnishing Status</Text>
+                    <Text fontWeight="bold">{furnishingStatus}</Text>
                 </Flex>
             )}
         </Flex>
 
         <Box>
-        {amenities.length && <Text fontSize="2xl" fontWeight="black" marginTop="5">Facilites:</Text>}
+            {amenities.length && <Text fontSize="2xl" fontWeight="black" marginTop="5">Facilites:</Text>}
             <Flex flexWrap="wrap">
-            {amenities?.map((item) => (
-                item?.amenities?.map((amenity) => (
-                    <Text key={amenity.text} fontWeight="bold" color="blue.400" fontSize="l" p="2" bg="gray.200" m="1" borderRadius="5">
-                    {amenity.text}
-                    </Text>
-                ))
-            ))}
+                {amenities?.map((item) => (
+                    item?.amenities?.map((amenity) => (
+                        <Text key={amenity.text} fontWeight="bold" color="blue.400" fontSize="l" p="2" bg="gray.200" m="1" borderRadius="5">
+                            {amenity.text}
+                        </Text>
+                    ))
+                ))}
             </Flex>
         </Box>
     </Box>
@@ -70,10 +70,10 @@ export default PropertyDetails;
 
 export async function getServerSideProps({ params: { id } }) {
     const data = await fetchApi(`${baseUrl}/properties/detail?externalID=${id}`);
-    
+
     return {
-      props: {
-        propertyDetails: data,
-      },
+        props: {
+            propertyDetails: data,
+        },
     };
-  }
+}
